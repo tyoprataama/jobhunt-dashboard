@@ -15,7 +15,7 @@ const Mainbar: FC<indexProps> = () => {
           <h1 className="text-lg">Company</h1>
           <h2 className="text-base font-semibold pb-4">Twitter</h2>
         </div>
-        <Button onClick={navLink} className="bg-indigo-700 rounded-none py-3 px-6">
+        <Button onClick={navLink} className="bg-blue-600 rounded-lg py-3 px-6">
           <PlusIcon className="mr-2 w-4 h-4" /> Post a Job
         </Button>
       </div>

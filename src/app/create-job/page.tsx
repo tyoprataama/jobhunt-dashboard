@@ -5,6 +5,6 @@ const page = () => {
   return <div>Post a job</div>;
 };
 
-page.propTypes = {};
+page.PropTypes = {};
 
 export default page;
