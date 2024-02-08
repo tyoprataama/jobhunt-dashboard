@@ -1,10 +1,19 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
+import { z } from 'zod';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { jobFormSchema } from "@/lib/formSchema";
 
-const page = () => {
-  return <div>Post a job</div>;
+interface indexProps {}
+const CreateJob: FC<indexProps> = ({}) => {
+  const form = useForm<z.infer<typeof jobFormSchema>>({
+    resolver: zodResolver(jobFormSchema),
+    defaultValues: {
+      requiredSkills: []
+    }
+  });
+  const onSubmit = (data: any) => console.log(data);
+  return <div>CreateJob</div>;
 };
 
-page.PropTypes = {};
-
-export default page;
+export default CreateJob;
