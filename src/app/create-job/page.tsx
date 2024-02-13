@@ -19,7 +19,14 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import FieldInput from "@/components/organism/FieldInput";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { JOBTYPES } from "@/constant";
+import { JOBTYPES, CATEGORIESTYPES } from "@/constant";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface indexProps {}
 const CreateJob: FC<indexProps> = ({}) => {
@@ -47,7 +54,9 @@ const CreateJob: FC<indexProps> = ({}) => {
           <FieldInput
             title="Basic Information"
             subTitle="List out your top perks and benefits"
-          ></FieldInput>
+          >
+            <div></div>
+          </FieldInput>
 
           <FieldInput
             title="Job Details"
@@ -96,6 +105,71 @@ const CreateJob: FC<indexProps> = ({}) => {
                       ))}
                     </RadioGroup>
                   </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </FieldInput>
+
+          <FieldInput
+            title="Salary"
+            subTitle="Please specify the estimated salary range for the role.' You can leave this blank '."
+          >
+            <div className="flex w-[450px] flex-row justify-between items-center">
+              <FormField
+                control={form.control}
+                name="salaryFrom"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormControl>
+                      <Input placeholder="$100" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <span className="text-gray-500 px-4">to</span>
+              <FormField
+                control={form.control}
+                name="salaryTo"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormControl>
+                      <Input placeholder="$1000" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </FieldInput>
+
+          <FieldInput
+            title="Categories"
+            subTitle="You can select multiple job categories"
+          >
+            <FormField
+              control={form.control}
+              name="categoryId"
+              render={({ field }) => (
+                <FormItem className="w-[450px]">
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger className="text-gray-500">
+                        <SelectValue placeholder="Select Job Categories" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {CATEGORIESTYPES.map((items: string, i: number) => (
+                        <SelectItem key={i + 1} value={items}>
+                          {items}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}
