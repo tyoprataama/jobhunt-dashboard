@@ -1,5 +1,5 @@
 "use client";
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -28,6 +28,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import InputSkills from "@/components/organism/InputSkills";
+import CKEditor from "@/components/organism/CKEditor";
 
 interface indexProps {}
 const CreateJob: FC<indexProps> = ({}) => {
@@ -40,6 +41,10 @@ const CreateJob: FC<indexProps> = ({}) => {
     },
   });
   const onSubmit = (data: any) => console.log(data);
+  const [editorLoaded, setEditorLoaded] = useState<boolean>(false);
+  useEffect(() => {
+    setEditorLoaded(true);
+  }, []);
   return (
     <div className="p-6 gap-3">
       <div className="flex w-full items-start font-semibold cursor-pointer">
@@ -182,6 +187,50 @@ const CreateJob: FC<indexProps> = ({}) => {
             subTitle="Add required skills for the job"
           >
             <InputSkills form={form} />
+          </FieldInput>
+
+          <FieldInput
+            title="Job Descriptions"
+            subTitle="Job titles must be describe one position"
+          >
+            <CKEditor
+              form={form}
+              name="jobDescription"
+              editorLoaded={editorLoaded}
+            />
+          </FieldInput>
+
+          <FieldInput
+            title="Responsibilities"
+            subTitle="Outline the core responsibilities of the position"
+          >
+            <CKEditor
+              form={form}
+              name="responsibility"
+              editorLoaded={editorLoaded}
+            />
+          </FieldInput>
+
+          <FieldInput
+            title="Who You Are"
+            subTitle="Add your preferred qualifications"
+          >
+            <CKEditor
+              form={form}
+              name="whoYouAre"
+              editorLoaded={editorLoaded}
+            />
+          </FieldInput>
+
+          <FieldInput
+            title="Nice-to-Haves"
+            subTitle="Add nice-to-have skills and qualifications for the role to encourage a more diverse set of candidates to apply"
+          >
+            <CKEditor
+              form={form}
+              name="niceToHave"
+              editorLoaded={editorLoaded}
+            />
           </FieldInput>
         </form>
       </Form>
