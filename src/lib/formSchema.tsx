@@ -13,6 +13,7 @@ export const jobFormSchema = z.object({
   requiredSkills: z
     .string()
     .array()
+    .max(5, "Required Skills must be less than 5 skills")
     .nonempty({ message: "Required Skills is must be at least 1 skill" }),
   jobDescription: z
     .string({ required_error: "Job Description is required" })

@@ -27,6 +27,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import InputSkills from "@/components/organism/InputSkills";
 
 interface indexProps {}
 const CreateJob: FC<indexProps> = ({}) => {
@@ -90,7 +91,7 @@ const CreateJob: FC<indexProps> = ({}) => {
                     <RadioGroup
                       onValueChange={field.onChange}
                       defaultValue={field.value}
-                      className="flex flex-col space-y-1"
+                      className="flex flex-col space-y-1 text-gray-500"
                     >
                       {JOBTYPES.map((items: string, i: number) => (
                         <FormItem
@@ -174,6 +175,13 @@ const CreateJob: FC<indexProps> = ({}) => {
                 </FormItem>
               )}
             />
+          </FieldInput>
+
+          <FieldInput
+            title="Required Skills"
+            subTitle="Add required skills for the job"
+          >
+            <InputSkills form={form} />
           </FieldInput>
         </form>
       </Form>
