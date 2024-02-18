@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/select";
 import InputSkills from "@/components/organism/InputSkills";
 import CKEditor from "@/components/organism/CKEditor";
+import InputBenefits from "@/components/organism/InputBenefits";
 
 interface indexProps {}
 const CreateJob: FC<indexProps> = ({}) => {
@@ -231,6 +232,12 @@ const CreateJob: FC<indexProps> = ({}) => {
               name="niceToHave"
               editorLoaded={editorLoaded}
             />
+          </FieldInput>
+          <FieldInput
+            title="Perks and Benefits"
+            subTitle="Encourage more people to apply by sharing the attractive rewards and benefits you offer your employees"
+          >
+            <InputBenefits form={form} />
           </FieldInput>
         </form>
       </Form>

@@ -27,4 +27,11 @@ export const jobFormSchema = z.object({
   niceToHave: z
     .string({ required_error: "Job Description is required" })
     .min(10, "Job Description must be at least 10 characters"),
+  benefits: z
+		.object({
+			benefit: z.string(),
+			description: z.string(),
+		})
+		.array().max(3, "Benefits must be less than 3 benefits")
+		.nonempty({ message: "Benefits must be at least 1 benefit" }),
 });

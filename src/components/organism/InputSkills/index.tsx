@@ -63,13 +63,12 @@ const InputSkills: FC<indexProps> = (props) => {
               )}
               <div className="space-x-3">
                 {values.map((items: string, i: number) => (
-                  <Badge
-                    variant={"outline"}
-                    key={i}
-                    onClick={() => handleDelete(items)}
-                  >
+                  <Badge variant={"outline"} key={i}>
                     {items}
-                    <FaRegTimesCircle className="w-4 h-4 ml-2 cursor-pointer text-red-500" />
+                    <FaRegTimesCircle
+                      className="w-4 h-4 ml-2 cursor-pointer text-red-500"
+                      onClick={() => handleDelete(items)}
+                    />
                   </Badge>
                 ))}
               </div>
