@@ -19,13 +19,13 @@ export const jobFormSchema = z.object({
     .string({ required_error: "Job Description is required" })
     .min(10, "Job Description must be at least 10 characters"),
   responsibility: z
-    .string({ required_error: "Job Description is required" })
+    .string({ required_error: "Responsibility is required" })
     .min(10, "Job Description must be at least 10 characters"),
   whoYouAre: z
-    .string({ required_error: "Job Description is required" })
+    .string({ required_error: "Who you are is required" })
     .min(10, "Job Description must be at least 10 characters"),
   niceToHave: z
-    .string({ required_error: "Job Description is required" })
+    .string({ required_error: "Nice to have is required" })
     .min(10, "Job Description must be at least 10 characters"),
   benefits: z
 		.object({
