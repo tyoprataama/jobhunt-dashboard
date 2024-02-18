@@ -6,7 +6,7 @@ export const JOBTYPES: EnumValues = [
   "Remote",
   "Internship",
 ];
-export const CATEGORIESTYPES: EnumValues = [
+export const CATEGORIES_TYPES: EnumValues = [
   "Design",
   "Sales",
   "Business",
@@ -15,4 +15,27 @@ export const CATEGORIESTYPES: EnumValues = [
   "Finance",
   "Engineering",
   "Technology",
+];
+
+export const JOB_LIST_COL: string[] = [
+  "Roles",
+  "Status",
+  "Date Posted",
+  "Due Date",
+  "Job Type",
+  "Applicants",
+  "Needs",
+  "Actions",
+];
+
+export const JOB_LIST_DATA = [
+  {
+    roles: "Software Developer",
+    status: "Live",
+    datePosted: "18 Feb 2024",
+    dueDate: "18 Mar 2024",
+    jobType: "Full-Time",
+    applicants: 5,
+    needs: 10,
+  },
 ];

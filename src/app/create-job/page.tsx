@@ -19,7 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import FieldInput from "@/components/organism/FieldInput";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { JOBTYPES, CATEGORIESTYPES } from "@/constant";
+import { JOBTYPES, CATEGORIES_TYPES } from "@/constant";
 import {
   Select,
   SelectContent,
@@ -170,7 +170,7 @@ const CreateJob: FC<indexProps> = ({}) => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {CATEGORIESTYPES.map((items: string, i: number) => (
+                      {CATEGORIES_TYPES.map((items: string, i: number) => (
                         <SelectItem key={i + 1} value={items}>
                           {items}
                         </SelectItem>
