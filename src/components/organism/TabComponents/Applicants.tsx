@@ -13,7 +13,7 @@ interface indexProps {}
 
 const Applicants: FC<indexProps> = ({}) => {
   return (
-    <div>
+    <div className="mt-7">
       <Table>
         <TableCaption>A list of your Applicants.</TableCaption>
         <TableHeader>

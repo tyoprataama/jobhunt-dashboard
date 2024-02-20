@@ -3,6 +3,7 @@ import { FC } from "react";
 import { ArrowLeftIcon } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Applicants from "@/components/organism/TabComponents/Applicants";
+import JobDetails from "@/components/organism/TabComponents/JobDetails";
 
 interface indexProps {}
 
@@ -30,7 +31,7 @@ const JobDetail: FC<indexProps> = () => {
             <Applicants />
           </TabsContent>
           <TabsContent value="jobDetails">
-            Change your password here.
+            <JobDetails />
           </TabsContent>
         </Tabs>
       </div>
