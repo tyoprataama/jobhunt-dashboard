@@ -110,7 +110,7 @@ const JobDetails: FC<indexProps> = () => {
         </p>
         <div className="grid grid-cols-4 gap-5 mt-7">
           {[0, 1, 2].map((items: number, i: number) => (
-            <div key={items}>
+            <div key={items} className="shadow-lg p-5 rounded-lg">
               <PartyPopper className="w-10 h-10 text-blue-500 mb-6" />
               <h2 className="text-lg font-semibold mb-3">Full Healthcare</h2>
               <p className="text-sm text-gray-500">
