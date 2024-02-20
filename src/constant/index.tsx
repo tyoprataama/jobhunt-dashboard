@@ -39,3 +39,12 @@ export const JOB_LIST_DATA = [
     needs: 10,
   },
 ];
+
+export const JOB_DETAIL_COL: string[] = ["Name", "Applied Date", "Action"];
+
+export const JOB_DETAIL_DATA = [
+  {
+    name: "John Doe",
+    appliedDate: "18 Feb 2024",
+  },
+];

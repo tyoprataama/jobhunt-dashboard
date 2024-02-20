@@ -1,3 +1,4 @@
+import ButtonTable from "@/components/organism/ButtonAction/ButtonTable";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,7 +11,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { JOB_LIST_COL, JOB_LIST_DATA } from "@/constant";
-import { MoreVertical, icons } from "lucide-react";
 import { FC } from "react";
 
 interface indexProps {}
@@ -20,7 +20,7 @@ const JobListing: FC<indexProps> = ({}) => {
       <div className="text-lg font-semibold">Job Listing</div>
       <div className="mt-10">
         <Table>
-          <TableCaption>A list of your Job Listing.</TableCaption>
+          <TableCaption>A list of your Job.</TableCaption>
           <TableHeader>
             <TableRow>
               {JOB_LIST_COL.map((items: string, i: number) => (
@@ -43,9 +43,7 @@ const JobListing: FC<indexProps> = ({}) => {
                   {items.applicants}/{items.needs}
                 </TableCell>
                 <TableCell>
-                  <Button size="icon" variant={"outline"}>
-                    <MoreVertical className="w-4 h-4" />
-                  </Button>
+                  <ButtonTable url="/job-detail/1" />
                 </TableCell>
               </TableRow>
             ))}
