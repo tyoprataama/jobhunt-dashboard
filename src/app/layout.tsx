@@ -1,8 +1,8 @@
-import Sidebar from "@/components/layout/Sidebar";
-import "./globals.css";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
 import { Epilogue } from "next/font/google";
-import Mainbar from "@/components/layout/Mainbar";
+import "./globals.css";
 
 const epilogue = Epilogue({ subsets: ["latin"] });
 
@@ -16,6 +16,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const DynamicSidebar = dynamic(() => import("@/components/layout/Sidebar"));
+  const DynamicMainbar = dynamic(() => import("@/components/layout/Mainbar"));
   return (
     <html lang="en">
       <body className={epilogue.className}>
@@ -23,10 +25,10 @@ export default function RootLayout({
           <div className="bg-background">
             <div className="flex flex-row">
               <div className="hidden lg:block w-[20%] border-r">
-                <Sidebar />
+                <DynamicSidebar />
               </div>
               <div className="col-span-3 overflow-auto lg:col-span-5 w-[80%]">
-                <Mainbar />
+                <DynamicMainbar />
                 {children}
               </div>
             </div>
