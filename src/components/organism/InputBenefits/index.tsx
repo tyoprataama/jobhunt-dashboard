@@ -48,7 +48,7 @@ const InputBenefits: FC<indexProps> = (props) => {
             </CardHeader>
             <CardContent>
               <CardTitle className="text-lg font">{items.benefit}</CardTitle>
-              <p className="text-gray-500">{items.description}</p>
+              <p className="text-gray-500 text-sm">{items.description}</p>
             </CardContent>
           </Card>
         ))}
