@@ -15,10 +15,12 @@ import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
 
 interface indexProps {
-  form: UseFormReturn<z.infer<typeof jobFormSchema>>;
+  form: any;
+  label: any;
+  name: string;
 }
 const InputSkills: FC<indexProps> = (props) => {
-  const { form } = props;
+  const { form, label, name } = props;
   const [isHide, setHide] = useState(false);
   const [values, setValues] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -38,11 +40,11 @@ const InputSkills: FC<indexProps> = (props) => {
   };
   return (
     <FormField
-      name="requiredSkills"
+      name={name}
       control={form.control}
       render={({ field }) => (
         <FormItem>
-          <FormLabel className="block text-gray-500">Add Skills</FormLabel>
+          <FormLabel className={name == 'techStack' ? 'hidden' : 'block'}>{label}</FormLabel>
           <FormControl>
             <>
               <Button
@@ -51,7 +53,7 @@ const InputSkills: FC<indexProps> = (props) => {
                 className="mb-2 text-gray-500"
                 onClick={() => setHide(!isHide)}
               >
-                <PlusIcon className="w-4 h-4 mr-2" /> Add Skills
+                <PlusIcon className="w-4 h-4 mr-2" /> {label}
               </Button>
               {isHide && (
                 <div className="my-4 flex flex-row gap-4">

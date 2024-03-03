@@ -187,7 +187,7 @@ const CreateJob: FC<indexProps> = ({}) => {
             title="Required Skills"
             subTitle="Add required skills for the job"
           >
-            <InputSkills form={form} />
+            <InputSkills name="requiredSkill" form={form} label="Add Skills" />
           </FieldInput>
 
           <FieldInput

@@ -1,5 +1,10 @@
 import { EnumValues } from "zod";
 
+export interface locationOpt {
+  id: string;
+  label: string;
+}
+
 export const JOBTYPES: EnumValues = [
   "Full-time",
   "Part-time",
@@ -48,3 +53,25 @@ export const JOB_DETAIL_DATA = [
     appliedDate: "18 Feb 2024",
   },
 ];
+
+export const LOCATION_OPT: locationOpt[] = [
+  {
+    id: "Indonesia",
+    label: "Indonesia ",
+  },
+  {
+    id: "Malaysia",
+    label: "Malaysia ",
+  },
+  {
+    id: "Singapore",
+    label: "Singapore ",
+  },
+  {
+    id: "Thailand",
+    label: "Thailand",
+  },
+];
+
+export const EMPLOYEE_OPT:string[] = ["1-10", "11-50", "51-100", "100+"];
+export const INDUSTRY_OPT:string[] = ["Software", "Design", "Marketing", "Business"];
