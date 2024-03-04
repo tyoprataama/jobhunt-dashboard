@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
 import { Epilogue } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 
 const epilogue = Epilogue({ subsets: ["latin"] });
 
