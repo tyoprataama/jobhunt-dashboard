@@ -56,3 +56,10 @@ export const socialLinkSchema = z.object({
   youtube: z.string({required_error:"Youtube is required"}),
 
 })
+
+export const teamsFormSchema = z.object({
+  name: z.string({required_error:"Name is required"}),
+  position: z.string({required_error:"Position is required"}),
+  instagram: z.string({required_error:"Instagram is required"}),
+  linkedin: z.string({required_error:"Linkedin is required"}),
+})
