@@ -44,13 +44,15 @@ const InputSkills: FC<indexProps> = (props) => {
       control={form.control}
       render={({ field }) => (
         <FormItem>
-          <FormLabel className={name == 'techStack' ? 'hidden' : 'block'}>{label}</FormLabel>
+          <FormLabel className={name == "techStack" ? "hidden" : "block"}>
+            {label}
+          </FormLabel>
           <FormControl>
             <>
               <Button
                 type="button"
                 variant="outline"
-                className="mb-2 text-gray-500"
+                className="mb-2 text-gray-500 cursor-pointer"
                 onClick={() => setHide(!isHide)}
               >
                 <PlusIcon className="w-4 h-4 mr-2" /> {label}

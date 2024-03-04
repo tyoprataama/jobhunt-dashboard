@@ -100,7 +100,7 @@ const SocialLinkForm: FC<indexProps> = () => {
           </div>
         </FieldInput>
         <div className="flex justify-end">
-          <Button size={"lg"} className="bg-blue-500 text-white">
+          <Button size={"lg"} className="bg-blue-500 hover:bg-blue-700 text-white cursor-pointer">
             Save Changes
           </Button>
         </div>

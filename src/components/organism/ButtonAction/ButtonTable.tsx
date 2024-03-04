@@ -10,7 +10,7 @@ const ButtonTable: FC<indexProps> = ({ url }) => {
   const route = useRouter();
   return (
     <Button onClick={() => route.push(url)} size="icon" variant={"outline"}>
-      <MoreVertical className="w-4 h-4" />
+      <MoreVertical className="w-4 h-4 cursor-pointer" />
     </Button>
   );
 };

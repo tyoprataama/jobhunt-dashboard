@@ -46,7 +46,7 @@ const DialogAdd: FC<Props> = (props) => {
         <Button
           type="button"
           variant="outline"
-          className="border-bluePrimary text-bluePrimary rounded-none"
+          className="border-bluePrimary text-bluePrimary rounded-none cursor-pointer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

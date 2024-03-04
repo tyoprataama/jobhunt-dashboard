@@ -1,6 +1,5 @@
 import ButtonTable from "@/components/organism/ButtonAction/ButtonTable";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -42,7 +41,7 @@ const JobListing: FC<indexProps> = ({}) => {
                 <TableCell>
                   {items.applicants}/{items.needs}
                 </TableCell>
-                <TableCell>
+                <TableCell className="cursor-pointer">
                   <ButtonTable url="/job-detail/1" />
                 </TableCell>
               </TableRow>

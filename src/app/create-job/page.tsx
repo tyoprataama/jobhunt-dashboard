@@ -240,7 +240,7 @@ const CreateJob: FC<indexProps> = ({}) => {
             <InputBenefits form={form} />
           </FieldInput>
           <div className="flex justify-end">
-            <Button type="submit" className="bg-blue-600 text-white">
+            <Button type="submit" className="bg-blue-600 text-white cursor-pointer">
               Do a Review
             </Button>
           </div>

@@ -35,7 +35,7 @@ const DialogAddTeam: FC<indexProps> = () => {
     <Dialog>
       <DialogTrigger asChild>
         <Button variant={"ghost"}>
-          <PlusIcon className="w-4 h-4 mr-2" /> Add Team{" "}
+          <PlusIcon className="w-4 h-4 mr-2 cursor-pointer" /> Add Team{" "}
         </Button>
       </DialogTrigger>
       <DialogContent>
@@ -105,7 +105,10 @@ const DialogAddTeam: FC<indexProps> = () => {
               />
             </div>
             <div className="flex justify-end">
-              <Button size={"lg"} className="bg-blue-500 text-white">
+              <Button
+                size={"lg"}
+                className="bg-blue-500 hover:bg-blue-700 text-white cursor-pointer"
+              >
                 Add Team
               </Button>
             </div>
