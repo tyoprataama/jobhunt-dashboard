@@ -47,3 +47,12 @@ export const overviewSchema = z.object({
   techStack: z.string().array().nonempty({message:"Tech Stack must be at least 1 data"}),
   description: z.string({required_error:"Description is required"}),
 })
+
+export const socialLinkSchema = z.object({
+  facebook: z.string({required_error:"Facebook is required"}),
+  instagram: z.string({required_error:"Instagram is required"}),
+  twitter: z.string({required_error:"Twitter is required"}),
+  linkedin: z.string({required_error:"Linkedin is required"}),
+  youtube: z.string({required_error:"Youtube is required"}),
+
+})

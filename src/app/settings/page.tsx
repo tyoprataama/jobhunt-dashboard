@@ -1,4 +1,5 @@
 import OverviewForm from "@/components/forms/OverviewForm";
+import SocialLinkForm from "@/components/forms/SocialLinkForm";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FC } from "react";
 interface indexProps {}
@@ -16,7 +17,7 @@ const Settings: FC<indexProps> = () => {
         <TabsContent value="overview">
           <OverviewForm />
         </TabsContent>
-        <TabsContent value="socialLinks">Social Links</TabsContent>
+        <TabsContent value="socialLinks"><SocialLinkForm /></TabsContent>
         <TabsContent value="teams">Teams</TabsContent>
       </Tabs>
     </div>
