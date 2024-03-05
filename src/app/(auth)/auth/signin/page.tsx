@@ -26,8 +26,8 @@ const SignIn: FC<indexProps> = ({}) => {
   return (
     <div className="relative w-full min-h-screen">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="p-6 border border-gray-300 bg-slate-50 rounded-lg">
-          <h1 className="text-xl font-semibold">Login to your account</h1>
+        <div className="p-6 border border-gray-300 bg-slate-50 rounded-lg w-[400px]">
+          <h1 className="text-2xl font-semibold">Login to your account</h1>
           <p className="text-sm text-gray-500">
             Please enter your email and password
           </p>
@@ -68,7 +68,7 @@ const SignIn: FC<indexProps> = ({}) => {
               </div>
             </form>
           </Form>
-          <div className="text-sm text-gray-500 mt-3">
+          <div className="text-sm text-gray-500 mt-3 text-center">
             Dont have an account yet?{" "}
             <Link href="/auth/signup" className="text-blue-500 underline">
               Signup here
