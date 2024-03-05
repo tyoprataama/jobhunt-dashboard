@@ -60,7 +60,7 @@ const InputSkills: FC<indexProps> = (props) => {
               {isHide && (
                 <div className="my-4 flex flex-row gap-4">
                   <Input ref={inputRef} className="w-[246px]" />
-                  <Button type="button" onClick={handleSave}>
+                  <Button type="button" variant={'ghost'} onClick={handleSave}>
                     Save
                   </Button>
                 </div>

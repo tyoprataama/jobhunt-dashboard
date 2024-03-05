@@ -63,3 +63,8 @@ export const teamsFormSchema = z.object({
   instagram: z.string({required_error:"Instagram is required"}),
   linkedin: z.string({required_error:"Linkedin is required"}),
 })
+
+export const signInFormSchema = z.object({
+  email: z.string({required_error:"Email is required"}).email("Email is invalid"),
+  password: z.string({required_error:"Password is required"}),
+})
