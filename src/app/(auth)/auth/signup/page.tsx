@@ -9,9 +9,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useToast } from "@/components/ui/use-toast";
 import { signInFormSchema, signUpFormSchema } from "@/lib/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -21,8 +23,29 @@ const SignUp: FC<indexProps> = ({}) => {
   const form = useForm<z.infer<typeof signUpFormSchema>>({
     resolver: zodResolver(signUpFormSchema),
   });
-  const onSubmit = (data: z.infer<typeof signUpFormSchema>) =>
-    console.log(data);
+  const { toast } = useToast();
+  const route = useRouter();
+  const onSubmit = async (data: z.infer<typeof signUpFormSchema>) => {
+    try {
+      await fetch("/api/company/new-user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      await route.push("/auth/signin");
+      toast({
+        title: "Signup success 👍",
+        description: "Please login to your account",
+      });
+    } catch {
+      toast({
+        title: "Error",
+        description: "error happens, please try again",
+      });
+    }
+  };
   return (
     <div className="relative w-full min-h-screen">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
