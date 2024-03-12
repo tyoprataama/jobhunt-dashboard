@@ -15,14 +15,31 @@ import Link from "next/link";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { signIn } from "next-auth/react";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 interface indexProps {}
 const SignIn: FC<indexProps> = ({}) => {
   const form = useForm<z.infer<typeof signInFormSchema>>({
     resolver: zodResolver(signInFormSchema),
   });
-  const onSubmit = (data: z.infer<typeof signInFormSchema>) =>
-    console.log(data);
+  const { toast } = useToast();
+  const router = useRouter();
+  const onSubmit = async (data: z.infer<typeof signInFormSchema>) => {
+    const authenticated = await signIn("credentials", {
+      ...data,
+      redirect: false,
+    });
+    if (authenticated?.error) {
+      toast({
+        title: "Error 👺",
+        description: "Email or password is invalid",
+      });
+    }
+    await router.push("/");
+    console.log(authenticated);
+  };
   return (
     <div className="relative w-full min-h-screen">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -54,7 +71,11 @@ const SignIn: FC<indexProps> = ({}) => {
                     <FormItem>
                       <FormLabel>Pasword</FormLabel>
                       <FormControl>
-                        <Input placeholder="************" {...field} />
+                        <Input
+                          type="password"
+                          placeholder="************"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
