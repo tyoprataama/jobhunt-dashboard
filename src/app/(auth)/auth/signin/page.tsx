@@ -26,9 +26,9 @@ const SignIn: FC<indexProps> = ({}) => {
   });
   const { toast } = useToast();
   const router = useRouter();
-  const onSubmit = async (data: z.infer<typeof signInFormSchema>) => {
+  const onSubmit = async (val: z.infer<typeof signInFormSchema>) => {
     const authenticated = await signIn("credentials", {
-      ...data,
+      ...val,
       redirect: false,
     });
     if (authenticated?.error) {

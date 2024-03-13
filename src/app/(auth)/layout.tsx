@@ -4,7 +4,7 @@ import "../globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { getServerSession } from "next-auth";
 import { authOpt } from "../api/auth/[...nextauth]/route";
-import { redirect } from "next/dist/server/api-utils";
+import { redirect } from "next/navigation";
 
 const epilogue = Epilogue({ subsets: ["latin"] });
 
@@ -20,7 +20,7 @@ export default async function RootLayout({
 }) {
   const session = await getServerSession(authOpt);
   if (session !== null) {
-    return redirect("/")
+    return redirect("/");
   }
   return (
     <html lang="en">

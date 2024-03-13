@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { Epilogue } from "next/font/google";
 import "../globals.css";
+import NextAuthProvider from "@/context/NextProvider";
 
 const epilogue = Epilogue({ subsets: ["latin"] });
 
@@ -21,17 +22,19 @@ export default function RootLayout({
     <html lang="en">
       <body className={epilogue.className}>
         <main>
-          <div className="bg-background">
-            <div className="flex flex-row">
-              <div className="hidden lg:block w-[20%] border-r">
-                <DynamicSidebar />
-              </div>
-              <div className="col-span-3 overflow-auto lg:col-span-5 w-[80%]">
-                <DynamicMainbar />
-                {children}
+          <NextAuthProvider>
+            <div className="bg-background">
+              <div className="flex flex-row">
+                <div className="hidden lg:block w-[20%] border-r">
+                  <DynamicSidebar />
+                </div>
+                <div className="col-span-3 overflow-auto lg:col-span-5 w-[80%]">
+                  <DynamicMainbar />
+                  {children}
+                </div>
               </div>
             </div>
-          </div>
+          </NextAuthProvider>
         </main>
       </body>
     </html>
