@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { jobFormSchema } from "@/lib/formSchema";
 import { ArrowLeftIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import moment from "moment";
 import {
   Form,
   FormControl,
@@ -15,6 +16,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import useSWR from "swr";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import FieldInput from "@/components/organism/FieldInput";
@@ -30,9 +32,16 @@ import {
 import InputSkills from "@/components/organism/InputSkills";
 import CKEditor from "@/components/organism/CKEditor";
 import InputBenefits from "@/components/organism/InputBenefits";
+import { fetcher } from "@/lib/utils";
+import { CategoryJob, Job } from "@prisma/client";
+import { useSession } from "next-auth/react";
+import { useToast } from "@/components/ui/use-toast";
 
 interface indexProps {}
 const CreateJob: FC<indexProps> = ({}) => {
+  const { data } = useSWR<CategoryJob[]>("/api/job/categories", fetcher);
+  const { data: session } = useSession();
+  const { toast } = useToast();
   const router = useRouter();
   const navLink = () => router.push("/");
   const form = useForm<z.infer<typeof jobFormSchema>>({
@@ -41,7 +50,42 @@ const CreateJob: FC<indexProps> = ({}) => {
       requiredSkills: [],
     },
   });
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = async (val: any) => {
+    try {
+      const body: any = {
+        applicants: 0,
+        roles: val.roles,
+        datePosted: moment().toDate(),
+        dueDate: moment().add(1, "M").toDate(),
+        jobType: val.jobType,
+        salaryTo: val.salaryTo,
+        salaryFrom: val.salaryFrom,
+        needs: 20,
+        companyId: session?.user.id!!,
+        categoryId: val.categoryId,
+        requiredSkills: val.requiredSkills,
+        description: val.jobDescription,
+        responsibility: val.responsibility,
+        whoYouAre: val.whoYouAre,
+        niceToHaves: val.niceToHave,
+        benefits: val.benefits,
+      };
+      await fetch("/api/job", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+      await router.push("/job-listing");
+    } catch (error) {
+      toast({
+        title: "Something went wrong! 👺",
+        description: "Please try again!",
+      });
+      console.log(error);
+    }
+  };
   const [editorLoaded, setEditorLoaded] = useState<boolean>(false);
   useEffect(() => {
     setEditorLoaded(true);
@@ -170,9 +214,9 @@ const CreateJob: FC<indexProps> = ({}) => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {CATEGORIES_TYPES.map((items: string, i: number) => (
-                        <SelectItem key={i + 1} value={items}>
-                          {items}
+                      {data?.map((items: any) => (
+                        <SelectItem key={items.id} value={items.id}>
+                          {items.name}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -240,7 +284,10 @@ const CreateJob: FC<indexProps> = ({}) => {
             <InputBenefits form={form} />
           </FieldInput>
           <div className="flex justify-end">
-            <Button type="submit" className="bg-blue-600 text-white cursor-pointer">
+            <Button
+              type="submit"
+              className="bg-blue-600 text-white cursor-pointer"
+            >
               Do a Review
             </Button>
           </div>
