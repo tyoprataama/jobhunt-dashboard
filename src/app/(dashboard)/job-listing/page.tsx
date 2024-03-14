@@ -11,9 +11,25 @@ import {
 } from "@/components/ui/table";
 import { JOB_LIST_COL, JOB_LIST_DATA } from "@/constant";
 import { FC } from "react";
+import moment from "moment";
+import prisma from "../../../../lib/prisma";
+import { getServerSession } from "next-auth";
+import { authOpt } from "@/app/api/auth/[...nextauth]/route";
+import { Job } from "@prisma/client";
+import { dateFormating } from "@/lib/utils";
 
 interface indexProps {}
-const JobListing: FC<indexProps> = ({}) => {
+const getJobList = async () => {
+  const session = await getServerSession(authOpt);
+  const jobs = prisma.job.findMany({
+    where: {
+      companyId: session?.user.id!!,
+    },
+  });
+  return jobs;
+};
+const JobListing: FC<indexProps> = async ({}) => {
+  const jobs = await getJobList();
   return (
     <div className="p-6">
       <div className="text-lg font-semibold">Job Listing</div>
@@ -28,14 +44,18 @@ const JobListing: FC<indexProps> = ({}) => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {JOB_LIST_DATA.map((items: any, i: number) => (
-              <TableRow key={items + 1}>
+            {jobs.map((items: Job, i: number) => (
+              <TableRow key={items.roles + i}>
                 <TableCell>{items.roles}</TableCell>
                 <TableCell>
-                  <Badge variant={"outline"}>{items.status}</Badge>
+                  {moment(items.datePosted).isBefore(items.dueDate) ? (
+                    <Badge variant={"outline"}>Live</Badge>
+                  ) : (
+                    <Badge variant={"destructive"}>Expired</Badge>
+                  )}
                 </TableCell>
-                <TableCell>{items.datePosted}</TableCell>
-                <TableCell>{items.dueDate}</TableCell>
+                <TableCell>{dateFormating(items.datePosted)}</TableCell>
+                <TableCell>{dateFormating(items.dueDate)}</TableCell>
                 <TableCell>{items.jobType}</TableCell>
                 <TableCell>{items.applicants}</TableCell>
                 <TableCell>
