@@ -9,6 +9,7 @@ import { FaUserGroup } from "react-icons/fa6";
 import { LuCalendarDays } from "react-icons/lu";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 interface indexProps {
   icons: string[];
@@ -54,7 +55,7 @@ const List: FC<indexProps> = (props) => {
               icon == "RiLogoutBoxLine" && "text-red-500 hover:text-red-700"
             }`}
             key={index}
-            onClick={navLink}
+            onClick={icon == 'RiLogoutBoxLine' ? () => signOut() : navLink}
           >
             <span className="mr-3">{IconComponent && <IconComponent />}</span>
             <span>{title[index]}</span>

@@ -11,7 +11,6 @@ const Mainbar: FC<indexProps> = () => {
   const { data: session } = useSession();
   const name = session?.user?.name;
   const displayName = name?.split(" ")[1] || name?.split(" ")[0];
-  console.log(session);
 
   const navLink = () => router.push("/create-job");
   return (

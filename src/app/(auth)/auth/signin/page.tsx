@@ -38,7 +38,6 @@ const SignIn: FC<indexProps> = ({}) => {
       });
     }
     await router.push("/");
-    console.log(authenticated);
   };
   return (
     <div className="relative w-full min-h-screen">
